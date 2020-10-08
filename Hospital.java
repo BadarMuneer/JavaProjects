@@ -17,8 +17,8 @@ class Admin implements Design
 			}
 			System.out.println();
 		}
-		System.out.print("\t\t\t\t\t");
-		System.out.println("BADAR HOSPITAL");
+		System.out.print("\t\t\t\t\t    ");
+		System.out.println("ADMIN");
 		for(int i=1; i<=2; i++)
 		{
 			System.out.print("\t\t\t\t");
