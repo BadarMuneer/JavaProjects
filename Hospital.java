@@ -1,11 +1,16 @@
 import java.util.*;
-interface Design
+class Design
 {
-	public void design();
-}
-class Admin implements Design
-{
-	public void design()
+	private Output output;
+	private Path p;
+	private Input input;
+	private BufferedReader reader;
+	private BufferedWriter writer;
+	Design()
+	{
+		
+	}
+	public void design(String title)
 	{
 		System.out.println("\n\n");
 		for(int i=1; i<=2; i++)
@@ -17,8 +22,8 @@ class Admin implements Design
 			}
 			System.out.println();
 		}
-		System.out.print("\t\t\t\t\t    ");
-		System.out.println("ADMIN");
+		System.out.print("\t\t\t\t\t   ");
+		System.out.println(title);
 		for(int i=1; i<=2; i++)
 		{
 			System.out.print("\t\t\t\t");
@@ -30,11 +35,20 @@ class Admin implements Design
 		}
 	}
 }
+class Admin extends Design
+{
+
+}
+class Doctor extends Design
+{
+
+}
 public class Hospital
 {
 	public static void main(String[] args) 
 	{
 		Admin admin=new Admin();
-		admin.design();
+		Doctor doctor=new Doctor();
+		
 	}
 }
