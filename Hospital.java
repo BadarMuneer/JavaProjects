@@ -11,20 +11,22 @@ class Design
 	public ProcessBuilder clscr;
 	public Console console;
 	public String password;
+	public char delimiter;
 	public Design()
 	{
 		try
 		{
 			clscr=new ProcessBuilder("cmd","/c","cls");
 			clscr.inheritIO().start().waitFor();
-			filepath=new File("check.txt");
+			filepath=new File("E:\\JavaProjects\\JavaProjects\\check.txt");
 			filereader=new FileReader(filepath);
-			filewriter=new FileWriter(filepath);
+			filewriter=new FileWriter(filepath,true);
 			reader=new BufferedReader(filereader);
 			writer=new BufferedWriter(filewriter);
 			input=new Scanner(System.in);
 			//System.out.println("Hello");
 			console=System.console();
+			delimiter=',';
 		}
 		catch(Exception e)
 		{
@@ -61,11 +63,11 @@ class Design
 	{
 		try
 		{
-			if(filepath.length()>0)
+			if(filepath.length()==0)
 				{
 					return true;
 				}
-			else
+			else if(filepath.length()>0)
 				return false;
 		}
 		catch(Exception e)
@@ -110,16 +112,20 @@ class Admin extends Design
 	public void adminTasks()
 	{
 		String userName=new String();
-		try
-		{
-			filepath.createNewFile();
-		}
-		catch(Exception e) { }
+		String str="Admin";
 		System.out.print("Enter User Name: ");
 		userName=input.nextLine();
 		System.out.print(userName+", Enter Your Password: ");
 		char[] pass=console.readPassword();
 		password=String.valueOf(pass);
+		try
+		{
+			str=str+delimiter+userName+delimiter+password;
+			writer.write(str);
+			writer.close();
+	    }
+	    catch(Exception e)
+	    {}
 	}
 }
 class Doctor extends Design
@@ -147,7 +153,7 @@ public class Hospital
 		Patient patient=new Patient();
 		Design design=new Design();
 
-		if(design.checkFirstTimeOpening())
+		if(!design.checkFirstTimeOpening())
 		{
 			design.verifyCredentials();
 		}
